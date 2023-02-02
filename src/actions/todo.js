@@ -1,22 +1,22 @@
-import * as types from './ActionTypes'
+import { ACTION_TYPES } from './common'
 
 export function addTask(taskName) {
   return {
-    type: types.TASK_ADD,
+    type: ACTION_TYPES.ADD_TASK,
     taskName
   }
 }
 
 export function deleteTask(idx) {
   return {
-    type: types.TASK_DELETE,
+    type: ACTION_TYPES.DELETE_TASK,
     idx
   }
 }
 
 export function toggleTask(idx) {
   return {
-    type: types.TASK_TOGGLE,
+    type: ACTION_TYPES.TOGGLE_TASK,
     idx
   }
 }

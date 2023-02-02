@@ -1,8 +1,6 @@
 import styled from 'styled-components'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from '../actions/todo'
-import iconCheck from '../assets/check.png'
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -45,7 +43,7 @@ function TaskItem(props) {
   return (
     <Wrapper>
       <Checkbox
-        checked={props.task.isCompleted}
+        checked={props.task.isDone}
         onChange={() => dispatch(actions.toggleTask(props.task.idx))}
       />
       <TaskName

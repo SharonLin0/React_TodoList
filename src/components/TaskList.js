@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import { FilterState } from '../common/utils'
 import FilterSection from './FilterSection'
 import TaskItem from './TaskItem'
 
@@ -26,18 +27,23 @@ const Container = styled.div`
 
 function TaskList() {
   const storeDefaultTask = useSelector((store) => store.todoReducer)
+  const filterStatus = useSelector((store) => store.filterReducer)
 
   const renderTaskList = () => {
     let list = []
     storeDefaultTask.forEach((item, index) => {
-      list.push(<TaskItem key={item.name} task={{...item, idx: index}} />)
+      if ((filterStatus === FilterState.ALL) ||
+      (filterStatus === FilterState.TODO && !item.isDone) ||
+      (filterStatus === FilterState.DONE && item.isDone)) {
+        list.push(<TaskItem key={item.name} task={{...item, idx: index}} />)
+      }
     })
     return list
   }
 
   return (
     <Wrapper>
-      <FilterSection />
+      <FilterSection selected={filterStatus}/>
       <Container>
         {renderTaskList()}
       </Container>
