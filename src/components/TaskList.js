@@ -30,11 +30,10 @@ function TaskList() {
   const filterStatus = useSelector((store) => store.filterReducer)
 
   const renderTaskList = () => {
-    return storeDefaultTask.map((item, index) => {
-      if ((filterStatus === FilterState.ALL) ||
-      (filterStatus === FilterState.TODO && !item.isDone) ||
-      (filterStatus === FilterState.DONE && item.isDone))
-      return (<TaskItem key={item.name} task={{...item, idx: index}} />)
+    return storeDefaultTask.map((task, index) => {
+      return ((filterStatus === FilterState.ALL) ||
+      (filterStatus === FilterState.TODO && !task.isDone) ||
+      (filterStatus === FilterState.DONE && task.isDone)) && (<TaskItem key={task.name} task={{...task, idx: index}} />)
     })
   }
 
