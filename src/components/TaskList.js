@@ -30,15 +30,12 @@ function TaskList() {
   const filterStatus = useSelector((store) => store.filterReducer)
 
   const renderTaskList = () => {
-    let list = []
-    storeDefaultTask.forEach((item, index) => {
+    return storeDefaultTask.map((item, index) => {
       if ((filterStatus === FilterState.ALL) ||
       (filterStatus === FilterState.TODO && !item.isDone) ||
-      (filterStatus === FilterState.DONE && item.isDone)) {
-        list.push(<TaskItem key={item.name} task={{...item, idx: index}} />)
-      }
+      (filterStatus === FilterState.DONE && item.isDone))
+      return (<TaskItem key={item.name} task={{...item, idx: index}} />)
     })
-    return list
   }
 
   return (

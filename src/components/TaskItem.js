@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import * as actions from '../actions/todo'
+import { Text } from '../common/utils'
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -51,7 +52,7 @@ function TaskItem(props) {
         {props.task.name}
       </TaskName>
       <BtnDelete onClick={() => dispatch(actions.deleteTask(props.task.idx))}>
-        Delete
+        {Text.BUTTON_DELETE}
       </BtnDelete>
     </Wrapper>
   )

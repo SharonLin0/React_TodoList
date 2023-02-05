@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from '../actions/todo'
+import { Text } from '../common/utils'
 import iconAdd from '../assets/add.png'
 
 const Wrapper = styled.div`
@@ -62,7 +63,7 @@ function TaskAdd() {
     <Wrapper>
       <Input
         value={newTask}
-        placeholder={'Add a new task'}
+        placeholder={Text.INPUT_PLACEHOLDER}
         onChange={handleChange}
       />
       <BtnAdd onClick={handleClick}>

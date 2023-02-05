@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import TaskList from './TaskList'
 import TaskAdd from './TaskAdd'
+import { Text } from '../common/utils'
 import '../App.css'
 
 const Wrapper = styled.div`
@@ -24,7 +25,7 @@ const Title = styled.h1`
 function App() {
   return (
     <Wrapper>
-      <Title>todo list</Title>
+      <Title>{Text.TITLE}</Title>
       <TaskAdd />
       <TaskList />
     </Wrapper>

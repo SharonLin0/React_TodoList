@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import * as actions from '../actions/filter'
-import { FilterState } from '../common/utils'
+import { FilterState, Text } from '../common/utils'
 
 const Container = styled.div`
   display: flex;
@@ -31,24 +31,15 @@ function Filter(props) {
 
   return (
     <Container>
-      <BtnFilter
-        active={props.selected === FilterState.ALL}
-        onClick={() => dispatch(actions.setFilter(FilterState.ALL))}
-      >
-        All
-      </BtnFilter>
-      <BtnFilter
-        active={props.selected === FilterState.TODO}
-        onClick={() => dispatch(actions.setFilter(FilterState.TODO))}
-      >
-        Todo
-      </BtnFilter>
-      <BtnFilter
-        active={props.selected === FilterState.DONE}
-        onClick={() => dispatch(actions.setFilter(FilterState.DONE))}
-      >
-        Done
-      </BtnFilter>
+      {Object.keys(FilterState).map(state => (
+        <BtnFilter
+          key={state}
+          active={props.selected === state}
+          onClick={() => dispatch(actions.setFilter(state))}
+        >
+          {Text[`FILTERSTATE_${state}`]}
+        </BtnFilter>
+      ))}
     </Container>
   )
 }
