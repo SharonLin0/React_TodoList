@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 480px;
-  margin-bottom: 40px;
+  margin: 0 10px 40px 10px;
 
   @media (min-width: 1440px) {
     max-width: 600px;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `
 
 const Input = styled.input.attrs({ type: 'text', autoFocus: true })`
-  width: 250px;
+  width: 230px;
   appearance: none;
   outline: none;
   border: none;

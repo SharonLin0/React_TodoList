@@ -1,14 +1,14 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../actions/todo'
 import { FilterState, Text } from '../common/utils'
 import FilterSection from './FilterSection'
 import TodoItem from './TodoItem'
-import iconMarkAll from '../assets/mark.png'
+import iconToggleAll from '../assets/mark.png'
 
 const Wrapper = styled.div`
   display: ${(props) => (props.todo.length ? 'block' : 'none')};
-  margin: 0 auto;
   max-width: 480px;
   min-width: 300px;
 
@@ -43,10 +43,10 @@ const Footer = styled.div`
   padding: 10px 0;
 `
 
-const BtnMarkAll = styled.span`
+const BtnToggleAll = styled.span`
   display: flex;
-  background-color: #dbcb9e;
-  border: 1px solid #dbcb9e;
+  background-color: ${(props) => (props.isToggleDone ? '#dbcb9e' : '#f3f3f3')};
+  border: 1px solid transparent;
   padding: 5px 10px;
   border-radius: 20px;
   cursor: pointer;
@@ -66,6 +66,12 @@ const Clear = styled.span`
 function TodoList(props) {
   const dispatch = useDispatch()
   const storedTodos = useSelector((store) => store.todoReducer)
+  const [isToggleDone, setIsToggleDone] = useState(true)
+
+  const toggleAll = () => {
+    dispatch(actions.toggleTodoAll({isToggleDone: isToggleDone}))
+    setIsToggleDone(!isToggleDone)
+  }
 
   const renderTodoList = () => {
     return storedTodos.map((todo) => {
@@ -89,10 +95,12 @@ function TodoList(props) {
         <Counter>{getTodoCountText()}</Counter>
       </Container>
       <Footer>
-        <BtnMarkAll onClick={() => dispatch(actions.doneAllTodo())}>
-          <img src={iconMarkAll} alt="mark all" />
-          {Text.COMPLETE_ALL}
-        </BtnMarkAll>
+        <BtnToggleAll
+          isToggleDone={isToggleDone}
+          onClick={toggleAll}>
+          <img src={iconToggleAll} alt="toggle all" />
+          {Text.TOGGLE_ALL}
+        </BtnToggleAll>
         <Clear
           isHaDoneTodos={getIsHasDoneTodos()}
           onClick={() => dispatch(actions.clearDoneTodo())}>

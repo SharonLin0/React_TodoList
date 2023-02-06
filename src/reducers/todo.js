@@ -27,8 +27,8 @@ export default function todos(state = initialTodoState, action) {
       newState[toggleIndex].isDone = !newState[toggleIndex].isDone
       store([...newState])
       return [...newState]
-    case ACTION_TYPES.DONE_ALL_TODO:
-      state.forEach(todo => todo.isDone = true)
+    case ACTION_TYPES.TOGGLE_TODO_ALL:
+      state.forEach(todo => todo.isDone = action.payload.isToggleDone)
       store([...state])
       return [...state]
     case ACTION_TYPES.CLEAR_DONE_TODO:

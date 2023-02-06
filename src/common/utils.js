@@ -7,12 +7,12 @@ export const RouterPath = {
 }
 
 export const Text = {
-  TITLE: 'todo list',
+  TITLE: 'TO-DO List',
   INPUT_PLACEHOLDER: 'Add a todo ...',
   FILTERSTATE_ALL: 'All',
   FILTERSTATE_TODO: 'Todo',
   FILTERSTATE_DONE: 'Done',
-  COMPLETE_ALL: 'Mark all',
+  TOGGLE_ALL: 'Toggle all',
   REMOVE_COMPLETED: 'Clear completed',
   COUNTER_SUFFIX_PLURAL: 'items left',
   COUNTER_SUFFIX: 'item left',

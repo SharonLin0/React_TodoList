@@ -12,8 +12,8 @@ const deleteTodo = (data) => (
 const toggleTodo = (data) => (
   { type: ACTION_TYPES.TOGGLE_TODO, payload: data }
 )
-const doneAllTodo = (data) => (
-  { type: ACTION_TYPES.DONE_ALL_TODO, payload: data }
+const toggleTodoAll = (data) => (
+  { type: ACTION_TYPES.TOGGLE_TODO_ALL, payload: data }
 )
 const clearDoneTodo = (data) => (
   { type: ACTION_TYPES.CLEAR_DONE_TODO, payload: data }
@@ -24,6 +24,6 @@ export {
   editTodo,
   deleteTodo,
   toggleTodo,
-  doneAllTodo,
+  toggleTodoAll,
   clearDoneTodo,
 }

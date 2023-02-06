@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px;
+  padding: 32px 0;
   margin: 16px;
 
   @media (min-width: 1440px) {
@@ -22,10 +22,10 @@ const Wrapper = styled.div`
   }
 `
 
-const Title = styled.h1`
+const Title = styled.div`
+  margin-bottom: 24px;
   color: #fff;
   font-size: 40px;
-  text-transform: uppercase;
 `
 
 function App() {
