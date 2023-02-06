@@ -16,7 +16,12 @@ Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/e
 $ npm install
 ```
 
-Run it
+To begin the development, run
 ```bash
 $ npm start
+```
+
+To create a production bundle, run
+```bash
+$ npm build
 ```

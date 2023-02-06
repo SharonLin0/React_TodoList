@@ -1,19 +1,25 @@
 import styled from 'styled-components'
-import TaskList from './TaskList'
-import TaskAdd from './TaskAdd'
+import { Routes, Route } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import TodoList from './TodoList'
+import TodoAdd from './TodoAdd'
 import { Text } from '../common/utils'
-import '../App.css'
+import '../index.css'
 
 const Wrapper = styled.div`
-  width: 80%;
-  height: 85vh;
+  min-height: 85vh;
   border-radius: 10px;
   background-color: #232931;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 32px;
-  margin: 16px auto;
+  margin: 16px;
+
+  @media (min-width: 1440px) {
+    min-height: 80vh;
+    margin: 48px;
+  }
 `
 
 const Title = styled.h1`
@@ -23,11 +29,17 @@ const Title = styled.h1`
 `
 
 function App() {
+  const filterStatus = useSelector((store) => store.filterReducer)
+
   return (
     <Wrapper>
       <Title>{Text.TITLE}</Title>
-      <TaskAdd />
-      <TaskList />
+      <TodoAdd />
+      <Routes>
+        <Route path="/" element={<TodoList filter={filterStatus}/>} />
+        <Route path="todo" element={<TodoList filter={filterStatus}/>} />
+        <Route path="done" element={<TodoList filter={filterStatus}/>} />
+      </Routes>
     </Wrapper>
   )
 }
