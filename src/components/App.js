@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Text } from '../common/utils'
+import { DATABASE_NAME, Text } from '../common/utils'
 import TodoList from './TodoList'
 import TodoAdd from './TodoAdd'
 
@@ -29,6 +30,14 @@ const Title = styled.div`
 
 function App() {
   const filterStatus = useSelector((store) => store.filterReducer)
+  const storedTodos = useSelector((store) => store.todoReducer)
+  console.log()
+
+  const store = () => {
+    localStorage.setItem(DATABASE_NAME, JSON.stringify(storedTodos))
+  }
+
+  useEffect(() => { store(storedTodos) })
 
   return (
     <Wrapper>

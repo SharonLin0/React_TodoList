@@ -9,7 +9,7 @@ const initialFilterState = () => {
 export default function filter(state = initialFilterState(), action) {
   switch (action.type) {
     case ACTION_TYPES.SET_FILTER:
-      return action.filter
+      return action.payload
     default:
       return state
   }
