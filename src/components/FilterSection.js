@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import * as actions from '../actions/filter'
+import { useDispatch } from 'react-redux'
 import { FilterState, RouterPath, Text } from '../common/utils'
+import * as actions from '../actions/filter'
 
 const Container = styled.div`
   display: flex;

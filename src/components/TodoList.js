@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../actions/todo'
 import { FilterState, Text } from '../common/utils'
+import iconToggleAll from '../assets/mark.png'
+import * as actions from '../actions/todo'
 import FilterSection from './FilterSection'
 import TodoItem from './TodoItem'
-import iconToggleAll from '../assets/mark.png'
 
 const Wrapper = styled.div`
   display: ${(props) => (props.todo.length ? 'block' : 'none')};
@@ -68,17 +68,21 @@ function TodoList(props) {
   const storedTodos = useSelector((store) => store.todoReducer)
   const [isToggleDone, setIsToggleDone] = useState(true)
 
-  const toggleAll = () => {
-    dispatch(actions.toggleTodoAll({isToggleDone: isToggleDone}))
-    setIsToggleDone(!isToggleDone)
-  }
-
   const renderTodoList = () => {
     return storedTodos.map((todo) => {
       return ((props.filter === FilterState.ALL) ||
       (props.filter === FilterState.TODO && !todo.isDone) ||
       (props.filter === FilterState.DONE && todo.isDone)) && (<TodoItem key={todo.id} todo={todo} />)
     })
+  }
+
+  const toggleTodoAll = () => {
+    dispatch(actions.toggleTodoAll({isToggleDone: isToggleDone}))
+    setIsToggleDone(!isToggleDone)
+  }
+
+  const clearDoneTodo = () => {
+    dispatch(actions.clearDoneTodo())
   }
 
   const getIsHasDoneTodos = () => storedTodos.some(todo => todo.isDone)
@@ -97,13 +101,13 @@ function TodoList(props) {
       <Footer>
         <BtnToggleAll
           isToggleDone={isToggleDone}
-          onClick={toggleAll}>
+          onClick={toggleTodoAll}>
           <img src={iconToggleAll} alt="toggle all" />
           {Text.TOGGLE_ALL}
         </BtnToggleAll>
         <Clear
           isHaDoneTodos={getIsHasDoneTodos()}
-          onClick={() => dispatch(actions.clearDoneTodo())}>
+          onClick={clearDoneTodo}>
           {Text.REMOVE_COMPLETED}
         </Clear>
       </Footer>

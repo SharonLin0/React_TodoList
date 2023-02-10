@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import * as actions from '../actions/todo'
 import { Text, Keyboard, generateUUID } from '../common/utils'
 import iconAdd from '../assets/add.png'
+import * as actions from '../actions/todo'
 
 const Wrapper = styled.div`
   display: flex;

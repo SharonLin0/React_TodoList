@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import * as actions from '../actions/todo'
 import { Keyboard } from '../common/utils'
 import iconDelete from '../assets/delete.png'
 import iconEdit from '../assets/edit.png'
+import * as actions from '../actions/todo'
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -30,7 +30,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `
 
-const TodoName = styled.div`
+const TodoTitle = styled.div`
   display: ${(props) => (props.editing ? 'none' : 'block')};
   flex: 1;
   margin: 0 20px;
@@ -72,10 +72,6 @@ function TodoItem({ todo }) {
   const [cacheTodo, setCacheTodo] = useState({ ...todo })
   const [isEditing, setIsEditing] = useState(false)
 
-  const handleEdit = (event) => {
-    setIsEditing(true)
-  }
-
   const handleChange = (event) => {
     setCacheTodo({ ...cacheTodo, title: event.target.value })
   }
@@ -100,19 +96,31 @@ function TodoItem({ todo }) {
     }
   }
 
+  const editTodo = (event) => {
+    setIsEditing(true)
+  }
+
+  const toggleTodo = () => {
+    dispatch(actions.toggleTodo(todo))
+  }
+
+  const deleteTodo = () => {
+    dispatch(actions.deleteTodo(todo))
+  }
+
   return (
     <Wrapper>
       <Checkbox
         checked={todo.isDone}
-        onChange={() => dispatch(actions.toggleTodo(todo))}
+        onChange={toggleTodo}
       />
-      <TodoName
-        editing={isEditing}
+      <TodoTitle
         done={todo.isDone}
-        onDoubleClick={handleEdit}
+        editing={isEditing}
+        onDoubleClick={editTodo}
       >
         {todo.title}
-      </TodoName>
+      </TodoTitle>
       <Input
         editing={isEditing}
         value={cacheTodo.title}
@@ -121,10 +129,10 @@ function TodoItem({ todo }) {
         onKeyDown={handleKeyDown}
       />
       <BtnEdit editing={isEditing}>
-        <img src={iconEdit} onClick={handleEdit} alt="edit" />
+        <img src={iconEdit} onClick={editTodo} alt="edit" />
       </BtnEdit>
       <BtnDelete editing={isEditing}>
-        <img src={iconDelete} onClick={() => dispatch(actions.deleteTodo(todo))} alt="delete" />
+        <img src={iconDelete} onClick={deleteTodo} alt="delete" />
       </BtnDelete>
     </Wrapper>
   )

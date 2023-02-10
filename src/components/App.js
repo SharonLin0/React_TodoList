@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Text } from '../common/utils'
 import TodoList from './TodoList'
 import TodoAdd from './TodoAdd'
-import { Text } from '../common/utils'
-import '../index.css'
 
 const Wrapper = styled.div`
   min-height: 85vh;
