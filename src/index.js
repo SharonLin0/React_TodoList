@@ -18,14 +18,14 @@ root.render(
   </React.StrictMode>
 )
 
-initializeFaro({
-  // Mandatory, the URL of the Grafana Cloud collector with embedded application key.
-  // Copy from the configuration page of your application in Grafana.
-  url: 'http://faro-collector-us-central-0.grafana.net/collect/{app-key}',
+// Add the following code snippet to your application before any other JavaScript/TypeScript code!
+// For example put the code in your root index.[ts|js] file, right before you initialize your SPA / App.
 
-  // Mandatory, the identification label(s) of your application
+initializeFaro({
+  url: 'https://faro-collector-prod-us-east-0.grafana.net/collect/3d6e065aae3b7815d6a8a5a40d004541',
   app: {
     name: 'todolist',
-    version: '1.0.0', // Optional, but recommended
-  },
+    version: '1.0.0',
+    environment: 'production'
+  }
 });
